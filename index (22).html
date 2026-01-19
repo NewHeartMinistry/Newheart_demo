@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Heart Newsletter — Winter 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&family=Noto+Sans+Hebrew:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: "Source Sans 3", "Noto Sans", sans-serif; background: linear-gradient(180deg, #2c4a6e 0%, #3d6a8a 50%, #2a5070 100%); color: #f0f4f8; line-height: 1.7; min-height: 100vh; }
+    body[data-lang="KO"] { font-family: "Noto Sans KR", "Source Sans 3", sans-serif; }
+    body[data-lang="TH"] { font-family: "Noto Sans Thai", "Source Sans 3", sans-serif; }
+    body[data-lang="IL"] { font-family: "Noto Sans Hebrew", "Source Sans 3", sans-serif; }
+    
+    :root {
+      --primary: #5a9fd4;
+      --primary-light: #8ec4f0;
+      --accent: #d4b44a;
+      --accent-light: #f0e0a0;
+      --dark: #2c4a6e;
+      --dark-card: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text: #f0f4f8;
+      --text-muted: #c8d8e8;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Header */
+    .page-header {
+      position: relative;
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(90, 159, 212, 0.25) 0%, transparent 50%, rgba(212, 180, 74, 0.15) 100%);
+      border-bottom: 1px solid var(--glass-border);
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(90, 159, 212, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 70% 80%, rgba(212, 180, 74, 0.15) 0%, transparent 40%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-2%, 2%) rotate(1deg); }
+    }
+    
+    .language-buttons {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.5rem;
+      z-index: 100;
+      display: flex;
+      gap: 8px;
+      background: var(--glass);
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+    .language-buttons span[data-lang] {
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.3s;
+      filter: grayscale(50%);
+    }
+    .language-buttons span[data-lang]:hover,
+    .language-buttons span[data-lang].active {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: grayscale(0%);
+    }
+    .audio-toggle { cursor: pointer; opacity: 0.7; transition: all 0.2s; }
+    .audio-toggle:hover { opacity: 1; transform: scale(1.1); }
+
+    .logo-container {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 60px rgba(90, 159, 212, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .newsletter-logo {
+      max-width: 320px;
+      width: 100%;
+      display: block;
+    }
+    .edition-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--dark);
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    
+    /* Verse Banner */
+    .verse-banner {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .verse-ref {
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .verse-text {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 2rem;
+      color: var(--text);
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* Grid Layouts */
+    section { padding: 4rem 0; }
+    
+    .founders-section {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 850px) {
+      .founders-section { grid-template-columns: 1fr; }
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .founder-message h3 {
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+    .founder-message p { color: var(--text-muted); margin: 1rem 0; }
+    .founder-signature {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+    }
+    .founder-signature .name { font-weight: 600; color: var(--text); }
+    .founder-signature .title { color: var(--accent); font-size: 0.9rem; }
+
+    /* Stories Grid - Horizontal Scroll */
+    .stories-section { overflow: hidden; }
+    .stories-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 1rem 0 2rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .stories-scroll::-webkit-scrollbar { height: 6px; }
+    .stories-scroll::-webkit-scrollbar-track { background: var(--glass); border-radius: 3px; }
+    .stories-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    .story-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .story-card:hover {
+      transform: scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 0 30px rgba(74, 144, 217, 0.2);
+    }
+    .story-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+    .story-card:hover .story-photo { border-color: var(--accent); }
+    .story-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0.3rem;
+      color: var(--text);
+    }
+    .story-role {
+      color: var(--primary-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(74, 144, 217, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* Kids Section with Parallax */
+    .kids-section {
+      position: relative;
+      padding: 5rem 0;
+      background: linear-gradient(180deg, transparent, rgba(74, 144, 217, 0.1), transparent);
+    }
+    .kids-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .kids-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Editorial & Donations Split */
+    .content-split {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 900px) {
+      .content-split { grid-template-columns: 1fr; }
+    }
+
+    .editorial-content {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .editorial-content h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+    }
+    .editorial-content h3:first-child { margin-top: 0; }
+    .editorial-content p { color: var(--text-muted); }
+
+    .sidebar-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-card h4 {
+      color: var(--accent);
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sidebar-card p { color: var(--text-muted); font-size: 0.95rem; margin: 0.5rem 0; }
+    .sidebar-card ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar-card li { padding: 0.5rem 0; color: var(--text-muted); border-bottom: 1px solid var(--glass-border); }
+    .sidebar-card li:last-child { border-bottom: none; }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .qr-item { text-align: center; }
+    .qr-item img {
+      width: 100%;
+      max-width: 140px;
+      border-radius: 12px;
+      border: 2px solid var(--glass-border);
+    }
+    .qr-item span { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--primary-light); text-decoration: none; }
+
+    /* Modals */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 22, 40, 0.9);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1.5rem;
+    }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: linear-gradient(180deg, #3d6a8a, #2a5070);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      border-radius: 24px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    }
+    .modal-content h2 {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      margin: 0 0 1.5rem;
+      font-size: 1.8rem;
+    }
+    .modal-content p { color: var(--text-muted); margin-bottom: 1rem; }
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close-modal:hover { color: var(--text); }
+    .modal-speak-btn {
+      position: absolute;
+      top: 1rem;
+      right: 4rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-speak-btn:hover { background: var(--primary); border-color: var(--primary); }
+    .modal-speak-btn.speaking { background: var(--accent); border-color: var(--accent); }
+
+    /* RTL Support */
+    [dir="rtl"] .modal-content { text-align: right; }
+    [dir="rtl"] .close-modal { right: auto; left: 1.5rem; }
+    [dir="rtl"] .modal-speak-btn { right: auto; left: 4rem; }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { animation: fadeInUp 0.6s ease-out forwards; }
+
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body data-lang="EN">
+  
+  <header class="page-header">
+    <div class="language-buttons">
+      <span data-lang="EN" title="English" class="active">🇺🇸</span>
+      <span data-lang="KO" title="한국어">🇰🇷</span>
+      <span data-lang="VN" title="Tiếng Việt">🇻🇳</span>
+      <span data-lang="TH" title="ไทย">🇹🇭</span>
+      <span data-lang="IL" title="Hebrew">🇮🇱</span>
+      <span class="audio-toggle" id="audioToggleHeader" title="Listen">🔊</span>
+    </div>
+    <div class="logo-container">
+      <img src="new-heart-logo.png" alt="New Heart" class="newsletter-logo" />
+    </div>
+    <div class="edition-badge" id="subtitle">Winter 2026 Edition</div>
+    <h1 class="visually-hidden" id="main-title">New Heart Newsletter</h1>
+  </header>
+
+  <div class="verse-banner">
+    <div class="verse-ref" id="verse-ref">Ezekiel 36:26</div>
+    <div class="verse-text" id="verse-text">"I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh."</div>
+  </div>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title" id="founders-greeting-title">From Our Founders</h2>
+      <div class="founders-section">
+        <div class="glass-card">
+          <iframe class="video-frame" src="https://www.youtube.com/embed/gZBn3xnHTL8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="founder-message">
+          <h3>A New Season of Grace</h3>
+          <div id="founder-msg">
+            <p>Hello, New Heart community!</p>
+            <p>As we enter this new year, we are reminded that God's mercies are new every morning. Has anyone asked you lately, "How is your heart?" For God, it is always a matter of the heart.</p>
+            <p>We praise and thank our Abba Father for sustaining us through each victorious day. May this season bring fresh encounters with His love.</p>
+          </div>
+          <div class="founder-signature">
+            <div class="name">Pastors Jason & Youngmi Cha</div>
+            <div class="title" id="founders-title">Founders & Global Directors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <div class="container">
+      <h2 class="section-title" id="stories-title">Stories of Transformation</h2>
+      <div class="stories-scroll">
+        <div class="story-card">
+          <img src="assets/img/ariel.jpeg" alt="Ariel" class="story-photo" />
+          <h3 class="story-name">Ariel</h3>
+          <div class="story-role" id="ariel-role">From Orthodox Judaism to Jesus</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-ariel">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="assets/img/choi.jpeg" alt="Choi" class="story-photo" />
+          <h3 class="story-name" id="choi-name">Choi Eun-young</h3>
+          <div class="story-role" id="choi-role">A Heart Healed from Shame</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-choi">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="assets/img/han.jpeg" alt="Han" class="story-photo" />
+          <h3 class="story-name" id="han-name">Han Ye-seul</h3>
+          <div class="story-role" id="han-role">From Striving to Rest</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-han">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="assets/img/keziah.jpeg" alt="Keziah" class="story-photo" />
+          <h3 class="story-name">Keziah</h3>
+          <div class="story-role" id="keziah-role">Encountering the Father's Love</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-keziah">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="assets/img/parichat.jpeg" alt="Parichat" class="story-photo" />
+          <h3 class="story-name">Parichat</h3>
+          <div class="story-role" id="parichat-role">Freedom from Long-Held Pain</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-parichat">Read Story</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kids-section">
+    <div class="container">
+      <h2 class="section-title" id="kids-title">New Heart Kids</h2>
+      <p class="kids-intro" id="kids-intro">From Los Angeles to Korea, God is giving His New Heart to the youngest members of our family. Creating space for children to worship, pray, and encounter Jesus.</p>
+      <div class="kids-grid">
+        <div class="story-card">
+          <img src="assets/img/ji.jpeg" alt="Ji Yeowoon" class="story-photo" />
+          <h3 class="story-name" id="ji-name">Ji Yeowoon</h3>
+          <div class="story-role" id="ji-role">NH Kids #2 — Korea</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-ji">Read Story</button>
+        </div>
+        <div class="story-card">
+          <img src="assets/img/kyungjin.jpeg" alt="Kyungjin" class="story-photo" />
+          <h3 class="story-name">Kyungjin</h3>
+          <div class="story-role" id="kyungjin-role">NH Kids #1 — Los Angeles</div>
+          <button class="btn btn-primary open-modal" data-target="#modal-kyungjin">Read Story</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="content-split">
+        <div class="editorial-content">
+          <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem;" id="editorial-section-title">Editorial</h2>
+          <div id="editorial-content">
+            <h3>The Fourth Day: Living It Out</h3>
+            <p>New Heart Ministry continues to witness God's undeniable grace across nations. This movement ignites the promise of Ezekiel 36:26 in every generation, weaving us into one global Kingdom Family.</p>
+            <h3>Our Unstoppable Mandate</h3>
+            <p>Our three-day gatherings are deep immersion in God's love, but this is preparation, not the end. We are compelled to live the Fourth Day—the daily application of our transformed hearts.</p>
+            <h3>Looking Ahead</h3>
+            <p>As God's vision sharpens, we sense His desire for us to become more intimately connected as a family. This newsletter exists to nurture that bond across continents.</p>
+          </div>
+        </div>
+        
+        <aside>
+          <div class="sidebar-card">
+            <h4>📅 <span id="upcoming-nh-title">Upcoming Events</span></h4>
+            <ul>
+              <li>🇹🇭 Thailand — Bangkok — Jan 27-30</li>
+              <li>🇮🇱 Israel — TBA — April 2026</li>
+              <li>🇺🇸 USA — TBA — May 2026</li>
+              <li>🇰🇷 Korea — TBA — October 2026</li>
+            </ul>
+          </div>
+          
+          <div class="sidebar-card">
+            <h4>🤝 <span id="serve-title">Ways to Serve</span></h4>
+            <p id="serve-text">Pray for upcoming weekends. Serve on a team. Share your testimony. Support New Heart Kids. Invite someone who needs a new heart encounter.</p>
+          </div>
+          
+          <div class="sidebar-card">
+            <h4>💝 <span id="palanca-title">Support & Donations</span></h4>
+            <p id="qr-instruction">Use QR codes or bank info below:</p>
+            <div class="qr-grid">
+              <div class="qr-item">
+                <img src="assets/img/IMG_1320.jpg" alt="USA QR" />
+                <span>🇺🇸 USA</span>
+              </div>
+              <div class="qr-item">
+                <img src="assets/img/IMG_1324.JPG" alt="Thailand QR" />
+                <span>🇹🇭 Thailand</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p id="footer-copyright">© 2026 New Heart Ministry. All rights reserved.</p>
+    <p id="footer-note">Please keep this newsletter within the New Heart family.</p>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal" id="modal-ariel"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="ariel-modal-title">Ariel — From Orthodox Judaism to Jesus</h2><div id="ariel-story-content"></div></div></div>
+  <div class="modal" id="modal-choi"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="choi-modal-title">Choi Eun-young — A Heart Healed from Shame</h2><div id="choi-story-content"></div></div></div>
+  <div class="modal" id="modal-han"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="han-modal-title">Han Ye-seul — From Striving to Rest</h2><div id="han-story-content"></div></div></div>
+  <div class="modal" id="modal-keziah"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="keziah-modal-title">Keziah — Encountering the Father's Love</h2><div id="keziah-story-content"></div></div></div>
+  <div class="modal" id="modal-parichat"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="parichat-modal-title">Parichat — Freedom from Long-Held Pain</h2><div id="parichat-story-content"></div></div></div>
+  <div class="modal" id="modal-ji"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="ji-modal-title">Ji Yeowoon — NH Kids #2 (Korea)</h2><div id="ji-story-content"></div></div></div>
+  <div class="modal" id="modal-kyungjin"><div class="modal-content"><button class="close-modal">×</button><button class="modal-speak-btn">🔊</button><h2 id="kyungjin-modal-title">Kyungjin — NH Kids #1 (Los Angeles)</h2><div id="kyungjin-story-content"></div></div></div>
+
+  <script>
+// TRANSLATIONS (Simplified demo - English only for demo, add other languages as needed)
+const translations = {
+  EN: {
+    mainTitle: "New Heart Newsletter",
+    subtitle: "Winter 2026 Edition",
+    foundersGreetingTitle: "From Our Founders",
+    foundersTitle: "Founders & Global Directors",
+    storiesTitle: "Stories of Transformation",
+    kidsTitle: "New Heart Kids",
+    editorialSectionTitle: "Editorial",
+    serveTitle: "Ways to Serve",
+    palancaTitle: "Support & Donations",
+    upcomingNhTitle: "Upcoming Events",
+    qrInstruction: "Use QR codes or bank info below:",
+    footerCopyright: "© 2026 New Heart Ministry. All rights reserved.",
+    footerNote: "Please keep this newsletter within the New Heart family.",
+    verseRef: "Ezekiel 36:26",
+    verseText: '"I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh."',
+    founderMsg: `<p>Hello, New Heart community!</p><p>As we enter this new year, we are reminded that God's mercies are new every morning. Has anyone asked you lately, "How is your heart?" For God, it is always a matter of the heart.</p><p>We praise and thank our Abba Father for sustaining us through each victorious day. May this season bring fresh encounters with His love.</p>`,
+    kidsIntro: "From Los Angeles to Korea, God is giving His New Heart to the youngest members of our family. Creating space for children to worship, pray, and encounter Jesus.",
+    serveText: "Pray for upcoming weekends. Serve on a team. Share your testimony. Support New Heart Kids. Invite someone who needs a new heart encounter.",
+    readStory: "Read Story",
+    arielRole: "From Orthodox Judaism to Jesus",
+    choiName: "Choi Eun-young",
+    choiRole: "A Heart Healed from Shame",
+    hanName: "Han Ye-seul",
+    hanRole: "From Striving to Rest",
+    keziahRole: "Encountering the Father's Love",
+    parichatRole: "Freedom from Long-Held Pain",
+    jiName: "Ji Yeowoon",
+    jiRole: "NH Kids #2 — Korea",
+    kyungjinRole: "NH Kids #1 — Los Angeles",
+    arielModalTitle: "Ariel — From Orthodox Judaism to Jesus",
+    choiModalTitle: "Choi Eun-young — A Heart Healed from Shame",
+    hanModalTitle: "Han Ye-seul — From Striving to Rest",
+    keziahModalTitle: "Keziah — Encountering the Father's Love",
+    parichatModalTitle: "Parichat — Freedom from Long-Held Pain",
+    jiModalTitle: "Ji Yeowoon — NH Kids #2 (Korea)",
+    kyungjinModalTitle: "Kyungjin — NH Kids #1 (Los Angeles)",
+    editorialContent: `<h3>The Fourth Day: Living It Out</h3><p>New Heart Ministry continues to witness God's undeniable grace across nations. This movement ignites the promise of Ezekiel 36:26 in every generation, weaving us into one global Kingdom Family.</p><h3>Our Unstoppable Mandate</h3><p>Our three-day gatherings are deep immersion in God's love, but this is preparation, not the end. We are compelled to live the Fourth Day—the daily application of our transformed hearts.</p><h3>Looking Ahead</h3><p>As God's vision sharpens, we sense His desire for us to become more intimately connected as a family. This newsletter exists to nurture that bond across continents.</p>`,
+    arielStory: `<p>My sister's profound experience with New Heart 52 in Israel had a deep impact on me. Witnessing her transformation inspired me to attend New Heart in the USA in May 2025.</p><p>I was born into a devout Orthodox Jewish family. As I grew older, a sense of unease began to stir within me. About six years ago, I began to research Jesus with an open mind. What I discovered was nothing short of revelatory—the prophecies of the Hebrew Bible clearly pointed to Jesus as the Messiah.</p><p>The New Heart program was a period of immense grace. I am grateful to God for transforming my life and giving me a new heart.</p>`,
+    choiStory: `<p><strong>1. Gratitude</strong></p><p>I cannot forget the spiritual leaders, the praise team, the Palanca team, and above all, the Royo members who shared their lives with tears and love.</p><p><strong>2. Before Going</strong></p><p>My family opposed my attending. But I had desperate reasons—my husband was graduating seminary and I felt depleted after COVID.</p><p><strong>3. Grace Received</strong></p><p>What I experienced was the hospitality and deep love of those who had fervently experienced God's grace.</p><p><strong>4. After</strong></p><p>Through New Heart, I will try to live according to the stories God told me. De colores.</p>`,
+    hanStory: `<p>I served as a team member for the first time in the 54th session. When I first attended as a candidate, I kept asking "What will we do?" but received no details. By the end, I declared, "I want to serve as a team member next year."</p><p>While serving on the praise team, I found myself interceding more for the candidates. God filled my heart with His love for these souls.</p><p>I encourage all candidates to serve as team members. The grace differs significantly. Thank you.</p>`,
+    keziahStory: `<p>I am Keziah from Vietnam. At the 14th New Heart retreat, God visited me miraculously. I have followed the Lord for 14 years, but realized I often served seeking His recognition rather than understanding His complete love.</p><p>On the first night, I wept before the Lord. I understood that He loves me not because of what I do, but simply because He loves me.</p><p>Since then, I have prayed for 18 people who accepted the Lord. Today, God is truly close and wonderful in my life.</p>`,
+    parichatStory: `<p>I would like to express heartfelt thanks to Pastor Mayuri, Pastor Sarah, and Pastor Matthew for their unwavering guidance and love.</p><p>I received deep inner restoration. I chose to forgive my ex-husband for everything. The accusations I carried for 18 years have transformed into something that leads me to pray more.</p><p>"NEW 54" has been a great blessing for both my heart and spirit.</p>`,
+    jiStory: `<p>I'm Ji Yeowoon, who served as coordinator for New Heart Kids. This year, it was conducted in Korea for the first time with 22 children and 10 teachers.</p><p>New Heart Kids was full of discomfort—many things you could do at home couldn't be done here. Amazingly, the children complied and endured. At the end, they said, "Will you do this again next year? I want to come again!"</p><p>God's plan was completely fulfilled. We were truly united in one heart.</p>`,
+    kyungjinStory: `<p>In May 2025, God opened a beautiful new chapter as we launched New Heart Kids #1 in Los Angeles. My heart was especially for young parents who felt spiritually dry while raising little ones.</p><p>As I served, God expanded my heart to embrace their children as well. Serving about twenty children, I saw firsthand how deeply God treasures each one.</p><p>I witnessed both parents and children receiving one new heart through the Holy Spirit. This is God's confirmation of His will to call us "family."</p>`
+  },
+  KO: {
+    mainTitle: "뉴하트 뉴스레터",
+    subtitle: "2026년 겨울호",
+    foundersGreetingTitle: "설립자 인사",
+    foundersTitle: "설립자 & 글로벌 디렉터",
+    storiesTitle: "변화의 이야기",
+    kidsTitle: "뉴하트 키즈",
+    editorialSectionTitle: "에디토리얼",
+    serveTitle: "섬길 수 있는 방법",
+    palancaTitle: "후원 & 헌금",
+    upcomingNhTitle: "다가오는 일정",
+    qrInstruction: "아래 QR 코드 또는 계좌 정보를 사용하세요:",
+    footerCopyright: "© 2026 New Heart Ministry. All rights reserved.",
+    footerNote: "이 뉴스레터를 뉴하트 가족 안에서만 공유해 주세요.",
+    verseRef: "에스겔 36:26",
+    verseText: '"또 새 마음을 너희에게 주고 새 영을 너희 속에 두고 너희 육신에서 굳은 마음을 제거하고 부드러운 마음을 줄 것이며"',
+    founderMsg: `<p>안녕하세요, 뉴하트 공동체 여러분!</p><p>새해를 맞이하며 하나님의 긍휼이 매일 아침 새로움을 기억합니다. 최근에 누군가 "마음은 어떠세요?"라고 물어본 적 있으신가요? 하나님께는 항상 마음의 문제입니다.</p><p>매일의 승리를 통해 우리를 붙들어 주시는 아바 아버지께 찬양과 감사를 드립니다.</p>`,
+    kidsIntro: "로스앤젤레스에서 한국까지, 하나님께서는 우리 가족의 가장 어린 구성원들에게 새 마음을 주고 계십니다.",
+    serveText: "다가오는 주말을 위해 기도해 주세요. 팀에서 섬기세요. 간증을 나누세요. 뉴하트 키즈를 후원하세요.",
+    readStory: "간증 읽기",
+    arielRole: "정통 유대교에서 예수님께로",
+    choiName: "최은영",
+    choiRole: "수치에서 치유받은 마음",
+    hanName: "한예슬",
+    hanRole: "애씀에서 안식으로",
+    keziahRole: "아버지의 사랑을 만나다",
+    parichatRole: "오랜 고통으로부터의 자유",
+    jiName: "지여운",
+    jiRole: "뉴하트 키즈 #2 — 한국",
+    kyungjinRole: "뉴하트 키즈 #1 — LA",
+    arielModalTitle: "아리엘 — 정통 유대교에서 예수님께로",
+    choiModalTitle: "최은영 — 수치에서 치유받은 마음",
+    hanModalTitle: "한예슬 — 애씀에서 안식으로",
+    keziahModalTitle: "게지아 — 아버지의 사랑을 만나다",
+    parichatModalTitle: "파리찻 — 오랜 고통으로부터의 자유",
+    jiModalTitle: "지여운 — 뉴하트 키즈 #2 (한국)",
+    kyungjinModalTitle: "경진 — 뉴하트 키즈 #1 (LA)",
+    editorialContent: `<h3>네 번째 날: 살아내기</h3><p>뉴하트 사역은 여러 나라에 걸쳐 하나님의 부인할 수 없는 은혜를 계속 목격하고 있습니다. 이 운동은 모든 세대에 에스겔 36:26의 약속을 점화합니다.</p><h3>우리의 멈출 수 없는 사명</h3><p>우리의 3일간의 모임은 하나님의 사랑에 깊이 잠기는 것이지만, 이것은 준비일 뿐입니다. 우리는 네 번째 날을 살도록 부름받았습니다.</p>`,
+    arielStory: `<p>이스라엘에서 열린 뉴하트 52에서 제 여동생의 깊은 경험은 저에게 큰 영향을 미쳤습니다. 약 6년 전, 저는 열린 마음으로 예수님에 대해 연구하기 시작했습니다. 제가 발견한 것은 계시였습니다.</p><p>뉴하트 프로그램은 엄청난 은혜의 시간이었습니다. 제 삶을 변화시키고 새 마음을 주신 하나님께 감사드립니다.</p>`,
+    choiStory: `<p><strong>1. 감사</strong></p><p>영적 지도자들, 찬양팀, 팔랑카팀, 그리고 눈물과 사랑으로 삶을 나눈 로요 멤버들을 잊을 수 없습니다.</p><p><strong>2. 가기 전</strong></p><p>가족들이 반대했습니다. 하지만 절박한 이유가 있었습니다.</p><p><strong>3. 받은 은혜</strong></p><p>하나님의 은혜를 열렬히 경험한 분들의 환대와 깊은 사랑을 경험했습니다.</p><p><strong>4. 후에</strong></p><p>뉴하트를 통해 하나님께서 말씀하신 이야기대로 살아가겠습니다. 데 꼴로레스.</p>`,
+    hanStory: `<p>54기에서 처음으로 팀원으로 섬겼습니다. 처음 후보자로 참석했을 때 "뭘 할 거야?"라고 계속 물었지만 정보를 받지 못했습니다. 끝날 때는 "내년에 팀원으로 섬기고 싶어요"라고 선언했습니다.</p><p>찬양팀에서 섬기면서 후보자들을 위해 더 많이 중보하게 되었습니다. 모든 후보자분들이 팀원으로 섬기시길 권합니다.</p>`,
+    keziahStory: `<p>저는 베트남에서 온 게지아입니다. 14기 뉴하트 리트릿에서 하나님께서 기적적으로 방문해 주셨습니다. 14년간 주님을 따랐지만, 그분의 완전한 사랑을 이해하지 못한 채 인정을 구하며 섬겼다는 것을 깨달았습니다.</p><p>첫날 밤, 주님 앞에서 울며 용서를 구했습니다. 그분이 저를 사랑하시는 것은 제가 무엇을 하기 때문이 아니라 단순히 사랑하시기 때문임을 이해했습니다.</p>`,
+    parichatStory: `<p>마유리 목사님, 사라 목사님, 매튜 목사님의 변함없는 인도와 사랑에 진심으로 감사드립니다.</p><p>깊은 내면의 회복을 받았습니다. 전 남편을 용서하기로 선택했습니다. 18년간 품었던 비난이 더 많이 기도하게 하는 것으로 변화되었습니다.</p><p>"NEW 54"는 제 마음과 영혼 모두에게 큰 축복이었습니다.</p>`,
+    jiStory: `<p>저는 뉴하트 키즈 총무로 섬긴 지여운입니다. 올해 한국에서 처음으로 22명의 아이들과 10명의 선생님이 함께했습니다.</p><p>뉴하트 키즈는 불편함으로 가득했습니다. 집에서 할 수 있는 것들을 여기서는 할 수 없었습니다. 놀랍게도 아이들은 따르고 견뎠습니다. 끝에 "내년에도 해요? 또 오고 싶어요!"라고 말했습니다.</p><p>하나님의 계획이 완전히 성취되었습니다.</p>`,
+    kyungjinStory: `<p>2025년 5월, 로스앤젤레스에서 뉴하트 키즈 #1을 시작하며 하나님께서 아름다운 새 장을 열어주셨습니다. 제 마음은 특별히 영적으로 메마름을 느끼는 어린 부모들을 향해 있었습니다.</p><p>섬기면서 하나님께서는 그들의 자녀들도 포용하도록 제 마음을 넓혀주셨습니다. 부모와 아이들 모두 성령을 통해 하나의 새 마음을 받는 것을 목격했습니다.</p>`
+  }
+};
+
+// Add VN, TH, IL translations here following the same pattern...
+// For this demo, copying EN as placeholder
+translations.VN = { ...translations.EN, subtitle: "Ấn Bản Mùa Đông 2026" };
+translations.TH = { ...translations.EN, subtitle: "ฉบับฤดูหนาว 2026" };
+translations.IL = { ...translations.EN, subtitle: "מהדורת חורף 2026" };
+  </script>
+
+  <script>
+// APP LOGIC
+function safeSetText(id, text) {
+  const el = document.getElementById(id);
+  if (el && typeof text === "string") el.textContent = text;
+}
+function safeSetHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el && typeof html === "string") el.innerHTML = html;
+}
+
+function switchLanguage(lang) {
+  const t = translations[lang] || translations.EN;
+  document.body.setAttribute('data-lang', lang);
+  document.body.setAttribute('dir', lang === 'IL' ? 'rtl' : 'ltr');
+  
+  document.querySelectorAll('.language-buttons span[data-lang]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  safeSetText("main-title", t.mainTitle);
+  safeSetText("subtitle", t.subtitle);
+  safeSetText("founders-greeting-title", t.foundersGreetingTitle);
+  safeSetText("founders-title", t.foundersTitle);
+  safeSetText("stories-title", t.storiesTitle);
+  safeSetText("kids-title", t.kidsTitle);
+  safeSetText("editorial-section-title", t.editorialSectionTitle);
+  safeSetText("serve-title", t.serveTitle);
+  safeSetText("palanca-title", t.palancaTitle);
+  safeSetText("upcoming-nh-title", t.upcomingNhTitle);
+  safeSetText("qr-instruction", t.qrInstruction);
+  safeSetText("footer-copyright", t.footerCopyright);
+  safeSetText("footer-note", t.footerNote);
+  safeSetText("verse-ref", t.verseRef);
+  safeSetText("verse-text", t.verseText);
+  safeSetHTML("founder-msg", t.founderMsg);
+  safeSetText("kids-intro", t.kidsIntro);
+  safeSetText("serve-text", t.serveText);
+  
+  safeSetText("ariel-role", t.arielRole);
+  safeSetText("choi-name", t.choiName);
+  safeSetText("choi-role", t.choiRole);
+  safeSetText("han-name", t.hanName);
+  safeSetText("han-role", t.hanRole);
+  safeSetText("keziah-role", t.keziahRole);
+  safeSetText("parichat-role", t.parichatRole);
+  safeSetText("ji-name", t.jiName);
+  safeSetText("ji-role", t.jiRole);
+  safeSetText("kyungjin-role", t.kyungjinRole);
+  
+  safeSetText("ariel-modal-title", t.arielModalTitle);
+  safeSetText("choi-modal-title", t.choiModalTitle);
+  safeSetText("han-modal-title", t.hanModalTitle);
+  safeSetText("keziah-modal-title", t.keziahModalTitle);
+  safeSetText("parichat-modal-title", t.parichatModalTitle);
+  safeSetText("ji-modal-title", t.jiModalTitle);
+  safeSetText("kyungjin-modal-title", t.kyungjinModalTitle);
+  
+  safeSetHTML("editorial-content", t.editorialContent);
+  safeSetHTML("ariel-story-content", t.arielStory);
+  safeSetHTML("choi-story-content", t.choiStory);
+  safeSetHTML("han-story-content", t.hanStory);
+  safeSetHTML("keziah-story-content", t.keziahStory);
+  safeSetHTML("parichat-story-content", t.parichatStory);
+  safeSetHTML("ji-story-content", t.jiStory);
+  safeSetHTML("kyungjin-story-content", t.kyungjinStory);
+  
+  document.querySelectorAll(".open-modal").forEach(btn => btn.textContent = t.readStory);
+  document.querySelectorAll(".modal-content").forEach(mc => {
+    mc.setAttribute("dir", lang === "IL" ? "rtl" : "ltr");
+    mc.style.textAlign = lang === "IL" ? "right" : "left";
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => switchLanguage("EN"));
+
+document.querySelectorAll(".language-buttons span[data-lang]").forEach(btn => {
+  btn.addEventListener("click", () => switchLanguage(btn.dataset.lang));
+});
+
+// Modals
+document.querySelectorAll(".open-modal").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    const modal = document.querySelector(btn.dataset.target);
+    if (modal) {
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+document.querySelectorAll(".close-modal").forEach(btn => {
+  btn.addEventListener("click", () => {
+    btn.closest(".modal").classList.remove("show");
+    document.body.style.overflow = "auto";
+    window.speechSynthesis.cancel();
+  });
+});
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+      window.speechSynthesis.cancel();
+    }
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const open = document.querySelector('.modal.show');
+    if (open) {
+      open.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      window.speechSynthesis.cancel();
+    }
+  }
+});
+
+// Audio
+document.getElementById("audioToggleHeader")?.addEventListener("click", () => {
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  } else {
+    const utter = new SpeechSynthesisUtterance(document.body.innerText);
+    utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
+    utter.rate = 0.95;
+    window.speechSynthesis.speak(utter);
+  }
+});
+
+document.querySelectorAll(".modal-speak-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains('speaking')) {
+      window.speechSynthesis.cancel();
+      btn.classList.remove('speaking');
+    } else {
+      const text = btn.closest(".modal").innerText;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = { EN: 'en-US', KO: 'ko-KR', VN: 'vi-VN', TH: 'th-TH', IL: 'he-IL' }[document.body.dataset.lang] || 'en-US';
+      utter.rate = 0.95;
+      btn.classList.add('speaking');
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+      utter.onend = () => btn.classList.remove('speaking');
+    }
+  });
+});
+  </script>
+</body>
+</html>
